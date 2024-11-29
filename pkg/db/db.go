@@ -2,7 +2,6 @@ package db
 
 import (
 	"fmt"
-
 	"github.com/Asker231/todo-app.git/configs"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -18,7 +17,6 @@ func ConnectionDb(config *configs.ConfigApp)*Db{
 	if err != nil{
 		fmt.Println(err)
 	}
-	
 	return &Db{
 		DB: db,
 	}
