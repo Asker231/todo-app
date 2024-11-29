@@ -8,6 +8,11 @@ import (
 )
 type ConfigApp struct{
 	ConfAuth AuthConfig
+	Db ConfigDb
+}
+
+type ConfigDb struct{
+	DNS string
 }
 
 
