@@ -12,9 +12,8 @@ import (
 		TOKEN string
 	}
 
-
 	func CompileConfig()*ConfigApp{
-		err := godotenv.Load()
+		err := godotenv.Load("../.env")
 		if err != nil{
 			fmt.Println(err)
 		}
