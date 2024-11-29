@@ -3,8 +3,8 @@ package auth
 import (
 	"fmt"
 	"net/http"
-
 	"github.com/Asker231/todo-app.git/configs"
+		"github.com/Asker231/todo-app.git/pkg/res"
 )
 type Auth struct{
 	*configs.ConfigApp
@@ -14,7 +14,10 @@ type DepAuth struct{
 }
 func(a *Auth)Login()http.HandlerFunc{
 	return func(w http.ResponseWriter, r *http.Request) {
-			fmt.Printf("Yor token is:%s\n",a.ConfigApp.ConfAuth.TOKEN)
+			result := LoginResponse{
+				Token: a.ConfigApp.ConfAuth.TOKEN,
+			}
+			res.JsonRes(w,result,200)
 	}
 }
 
