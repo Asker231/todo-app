@@ -6,11 +6,14 @@ import (
 
 	"github.com/joho/godotenv"
 )
+type ConfigApp struct{
+	ConfAuth AuthConfig
+}
 
 
-	type ConfigApp struct{
-		TOKEN string
-	}
+type AuthConfig struct{
+	TOKEN string
+}
 
 	func CompileConfig()*ConfigApp{
 		err := godotenv.Load("../.env")
@@ -18,6 +21,8 @@ import (
 			fmt.Println(err)
 		}
 		return &ConfigApp{
-			TOKEN: os.Getenv("TOKEN"),
+			ConfAuth: AuthConfig{
+				TOKEN: os.Getenv("TOKEN"),
+			},
 		}
 	}

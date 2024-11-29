@@ -6,18 +6,15 @@ import (
 
 	"github.com/Asker231/todo-app.git/configs"
 )
-
 type Auth struct{
 	*configs.ConfigApp
 }
-
 type DepAuth struct{
 	*configs.ConfigApp
 }
-
 func(a *Auth)Login()http.HandlerFunc{
 	return func(w http.ResponseWriter, r *http.Request) {
-			fmt.Printf("Yor token is:%s\n",a.ConfigApp.TOKEN)
+			fmt.Printf("Yor token is:%s\n",a.ConfigApp.ConfAuth.TOKEN)
 	}
 }
 
