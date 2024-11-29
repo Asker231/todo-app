@@ -7,6 +7,7 @@ import (
 
 	"github.com/Asker231/todo-app.git/configs"
 	"github.com/Asker231/todo-app.git/pkg/res"
+	"github.com/go-playground/validator/v10"
 )
 type Auth struct{
 	*configs.ConfigApp
@@ -23,13 +24,19 @@ func(a *Auth)Login()http.HandlerFunc{
 			if err != nil{
 				res.JsonRes(w,err.Error(),402)
 			}
-		//write log ...
-			result := LoginResponse{
-				Token: a.ConfigApp.ConfAuth.TOKEN,
+
+			validate := validator.New()
+			err = validate.Struct(payload)
+			if err != nil{
+				res.JsonRes(w,err.Error(),402)
+				return
 			}
-			res.JsonRes(w,result,200)
 
-
+				//write log ...
+				result := LoginResponse{
+					Token: a.ConfigApp.ConfAuth.TOKEN,
+				}
+				res.JsonRes(w,result,200)
 	}
 }
 
